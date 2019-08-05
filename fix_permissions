@@ -1,0 +1,10 @@
+#/bin/zsh
+
+cd "${BASH_SOURCE%/*}" || exit;
+
+find . -type d -exec chmod 755 {} \;
+find . -type f -exec chmod 644 {} \;
+chmod 755 fix_permissions
+chmod 755 .htaccess
+chmod 755 setup-vue 
+chmod 755 server server.py

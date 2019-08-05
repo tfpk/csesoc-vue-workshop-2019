@@ -1,0 +1,4 @@
+SetHandler Default
+<Files "server">
+    SetHandler application/x-setuid-cgi
+</Files>

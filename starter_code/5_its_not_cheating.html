@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Okay maybe a little..</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
+    <script src="https://vuejs.org/js/vue.js"></script> 
+    <script src="https://unpkg.com/vue-multiselect@2.1.0"></script>
+    <link rel="stylesheet" href="https://unpkg.com/vue-multiselect@2.1.0/dist/vue-multiselect.min.css">
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/open-iconic/font/css/open-iconic-bootstrap.css" rel="stylesheet">
+    <style>
+.container {
+  margin-top:2em;
+}
+h1 {
+  margin
+}
+</style>
+  </head>
+
+  <body>
+
+    <div id="vue" class="container">
+      <h1>It's not Cheating, It's Borrowing</h1>
+      <multiselect v-model="selected_options" :options="options" :multiple="true" :close-on-select="false" :clear-on-select="false" :preserve-search="true" placeholder="Choose Tags To Allow" label="value" track-by="value" :preselect-first="true"> </multiselect>
+      <pre id="data">
+{{ selected_options }}
+      </pre>
+    </div>
+    <script>
+
+Vue.component('multiselect', window.VueMultiselect.default);
+var vm = new Vue({
+  el: "#vue",
+  data: {
+    data: window.localStorage.getItem('data', ""),
+    options: [
+      {value: 'Option1'},
+      {value: 'Option2'}
+    ],
+    selected_options: []
+  },
+})
+    </script>
+  </body>
+</html>
+

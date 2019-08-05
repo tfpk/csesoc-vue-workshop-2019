@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Bugs on the Wall</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script> 
+    <script src="https://vuejs.org/js/vue.js"></script> 
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="/open-iconic/font/css/open-iconic-bootstrap.css" rel="stylesheet">
+    <style>
+.container {
+  margin-top:2em;
+}
+h1 {
+  margin
+}
+</style>
+  </head>
+
+  <body>
+
+    <div class="container">
+      <h1>No REST for the wicked</h1>
+      <div id="error" v-if="error_code">
+	<div class='alert alert-danger'>Could not make request, failed with code {{ error_code }}</div>
+      </div>
+      <pre id="api">
+{{ data }}
+      </pre>
+      <input class="form-control" type="text" id="api_url" v-model="url"></input>
+      <button class="btn btn-default" v-on:click="call_api()">Request!</button>
+    </div>
+    <script>
+var vm = new Vue({
+  el: ".container",
+  data: {
+    error_code: false,
+    data: "What do we get from our web API?",
+    url: ""
+  },
+  methods: {
+    call_api () {
+      this.error_code = undefined;
+      axios.get(this.url).then(function (response) {
+	this.data = response.data;
+      }.bind(this)).catch(function (error) {
+	if (error.response) {
+	  this.error_code = error.response.status;
+	}
+	if (error.response === undefined) {
+	  this.error_code = "CORS";
+	}
+	this.data = "Can't acces Non-CSE Sites";
+      }.bind(this))
+
+    }
+  }
+})
+    </script>
+  </body>
+</html>
+

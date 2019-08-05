@@ -1,0 +1,17 @@
+#!/bin/bash
+
+mkdir -p ~/public_html/vue/
+
+chmod 755 ~/public_html
+chmod 755 ~/public_html/vue
+
+for file in /web/z5205060/vue/*; do
+    # [[ -f "$file" ]] && echo $file
+    [[ -f "$file" ]] && cp -n $file ~/public_html/vue
+done
+
+cp /web/z5205060/vue/.htaccess ~/public_html/vue/
+
+ln -s /web/z5205060/vue/complete ~/public_html/vue/ 
+
+~/public_html/vue/fix_permissions
